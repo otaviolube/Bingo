@@ -25,14 +25,21 @@ function gerarCartela(){
 
 function gerarCartelaHTML() {
 
+    let nomeJogador = prompt("Digite o nome do jogador:;")
+
     let titulo = ['B', 'I', 'N', 'G', 'O'];
     let cartela = gerarCartela();
 
     let divBingo = document.getElementById("bingo");
 
+    let h3nome = document.createElement("h3");
+    h3nome.innerText = nomeJogador;
+    divBingo.appendChild(h3nome);
+
     let divCartela = document.createElement("div");
     let table = document.createElement("table");
     let tr = document.createElement("tr");
+    tr.className="table-primary";
 
     titulo.forEach(function (elemento) {
         let td = document.createElement("td");
@@ -42,20 +49,21 @@ function gerarCartelaHTML() {
 
     table.appendChild(tr);
 
-    for(let i = 0; i < 5; i++){
+    for(let linha = 0; linha < 5; linha++){
         let tr = document.createElement("tr");
-        for(let j = 0; j < 5; j++){
+        for(let coluna = 0; coluna < 5; coluna++){
             let td = document.createElement("td");
-            if(i == 2 && j == 2){
+            if(linha == 2 && coluna == 2){
                 td.innerText = "X";
             }else{
-                td.innerText = cartela[j][i]
+                td.innerText = cartela[coluna][linha];
             }
             tr.appendChild(td);
         }
         table.appendChild(tr);
     }
 
+    table.classList = ["table", "table-dark", "table-striped"];
     divCartela.appendChild(table);
     divCartela.style = "display: inline;"
     divBingo.appendChild(divCartela);
