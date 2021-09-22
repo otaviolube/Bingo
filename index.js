@@ -33,10 +33,13 @@ function gerarCartelaHTML() {
     let divBingo = document.getElementById("bingo");
 
     let h3nome = document.createElement("h3");
+    h3nome.style = "text-align: center;"
     h3nome.innerText = nomeJogador;
-    divBingo.appendChild(h3nome);
+    
 
     let divCartela = document.createElement("div");
+    divCartela.appendChild(h3nome);
+    divCartela.className = "col-4"
     let table = document.createElement("table");
     let tr = document.createElement("tr");
     tr.className="table-primary";
