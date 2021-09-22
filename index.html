@@ -14,12 +14,24 @@
 </head>
 
 <body>
-    <h1>BINGO</h1>
-    <div id="bingo">
-
+    <div class="container">
+        <div class="jumbotron jogo-header">
+            <h1 class="display-4">BINGO</h1>
+        </div>
     </div>
-
-    <button onclick="gerarCartelaHTML()">Criar elemento</button>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>BINGO</h1>
+                <div id="bingo"></div>
+                <button onclick="gerarCartelaHTML()">Criar elemento</button>
+            </div>
+            <div class="col">
+                <h1>Área do Jogo</h1>
+                <button onclick="jogar()">Jogar</button>
+            </div>
+        </div>
+    </div>
 
     <script src="index.js"></script>
     <!-- JavaScript Bundle with Popper -->
