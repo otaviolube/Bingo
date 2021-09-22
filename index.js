@@ -39,10 +39,12 @@ function gerarCartelaHTML() {
 
     let divCartela = document.createElement("div");
     divCartela.appendChild(h3nome);
-    divCartela.className = "col-4"
+    divCartela.className = "col-4";
+    let divTabela = document.createElement("div");
+    divTabela.style = "display: flex; justify-content: center;"
     let table = document.createElement("table");
+    table.className = "borda-tabela";
     let tr = document.createElement("tr");
-    tr.className="table-primary";
 
     titulo.forEach(function (elemento) {
         let td = document.createElement("td");
@@ -56,6 +58,7 @@ function gerarCartelaHTML() {
         let tr = document.createElement("tr");
         for(let coluna = 0; coluna < 5; coluna++){
             let td = document.createElement("td");
+            td.className = "borda-tabela";
             if(linha == 2 && coluna == 2){
                 td.innerText = "X";
             }else{
@@ -66,8 +69,8 @@ function gerarCartelaHTML() {
         table.appendChild(tr);
     }
 
-    table.classList = ["table", "table-dark", "table-striped"];
-    divCartela.appendChild(table);
+    divTabela.appendChild(table);
+    divCartela.appendChild(divTabela);
     divCartela.style = "display: inline;"
     divBingo.appendChild(divCartela);
 
