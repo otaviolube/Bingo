@@ -20,3 +20,17 @@ th, td {
     align-items: center;
     justify-content: center;
 }
+
+.sorteado{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    width: 30px;
+    height: 30px;
+    color: blue;
+    background-color: pink;
+    border: 1px solid blueviolet;
+    border-radius: 15px;
+    margin: 5px;
+}
