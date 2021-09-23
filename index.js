@@ -97,15 +97,19 @@ function verificaCartela(cartela, numerosSorteados, quantidadeNumeros) {
     if (numerosSorteados.length < quantidadeNumeros) {
         return false;
     }
+
     let numerosExistem = true;
-    cartela.forEach(function (numero) {
-        if (numerosSorteados.includes(numero) == true) {
-            numerosExistem = true;
-        } else {
-            numerosExistem = false;
-            return false;
+    for(let i = 0; i < 5; i++){
+        for(let j = 0; j < 5; j++){
+            if (numerosSorteados.includes(cartela[i][j]) == true) {
+                numerosExistem = true;
+            } else {
+                numerosExistem = false;
+                return false;
+            }
         }
-    });
+    }
+
     if (numerosExistem == true) {
         return true;
     }
@@ -116,6 +120,8 @@ function jogarBingo() {
         alert("Você precisa ter pelo menos dois jogadores para jogar!!!");
         return;
     }
+    let vetorTds = document.getElementsByTagName("td");
+    console.log(vetorTds);
     let numerosSorteados = [];
     let divSorteados = document.getElementById("sorteados");
     let intervalo = setInterval(function () {
@@ -127,6 +133,11 @@ function jogarBingo() {
             } else {
                 numeroExiste = false;
                 numerosSorteados.push(numeroAleatorio);
+                for(let i = 0; i < vetorTds.length; i++){
+                    if(vetorTds[i].innerText == numeroAleatorio){
+                        vetorTds[i].style = "background-color: green;"
+                    }
+                }
                 let divNumero = document.createElement("div");
                 divNumero.classList.add("col-2");
                 divNumero.classList.add("sorteado");
@@ -136,6 +147,8 @@ function jogarBingo() {
                 vetorJogadores.forEach(function (jogador) {
                     if (verificaCartela(jogador.cartela, numerosSorteados, 25) == true) {
                         console.log(`${jogador.nome} ganhou o BINGO! Parabénnnsssssss!!!!!!`);
+                        let h2Vencedor = document.getElementById("vencedor");
+                        h2Vencedor.innerText += `${jogador.nome} ganhou o BINGO! Parabénnnsssssss!!!!!!\n`;
                         clearInterval(intervalo);
                     }
                 });
@@ -145,5 +158,5 @@ function jogarBingo() {
             console.log("Sorteio Finalizado!");
             clearInterval(intervalo);
         }
-    }, 1000);
+    }, 200);
 }
