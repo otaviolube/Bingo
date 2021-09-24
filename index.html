@@ -25,14 +25,15 @@
             <div class="col-8">
                 <h1 class="centro">BINGO</h1>
                 <div class="centro">
-                    <button class="btn btn-primary" onclick="gerarCartelaHTML()">Criar cartela</button>
+                    <button id="botaoGerarCartela" class="btn btn-primary" onclick="gerarCartelaHTML()">Criar cartela</button>
+                    <button id="reset" style="margin-left: 10px;" class="btn btn-secondary" onclick="reiniciarJogo()">Reiniciar Jogo</button>
                 </div>
                 <div id="bingo" class="row border border-primary border-4" style="margin-top: 20px;"></div>
             </div>
             <div class="col">
                 <h1 class="centro">Área do Jogo</h1>
                 <div class="centro" style="margin-bottom: 20px;">
-                    <button class="btn btn-danger" onclick="jogarBingo()">Jogar</button>
+                    <button id="botaoJogar" class="btn btn-danger" onclick="jogarBingo()">Jogar</button>
                 </div>
                 <div class="container">
                     <div class="row" id="sorteados">

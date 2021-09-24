@@ -1,4 +1,5 @@
 let vetorJogadores = [];
+let jogoRolando = false;
 
 function gerarNumeroAleatorio(inicioIntervalo, fimIntervalo) {
     return Math.floor((fimIntervalo - inicioIntervalo) * Math.random()) + inicioIntervalo;
@@ -26,6 +27,11 @@ function gerarCartela() {
 }
 
 function gerarCartelaHTML() {
+
+    if(jogoRolando == true){
+        alert("Não é possível gerar uma cartela com o jogo em andamento!");
+        return;
+    }
 
     let nomeJogador = prompt("Digite o nome do jogador:");
     if(nomeJogador == "" || nomeJogador == null){
@@ -120,6 +126,9 @@ function jogarBingo() {
         alert("Você precisa ter pelo menos dois jogadores para jogar!!!");
         return;
     }
+    jogoRolando = true;
+    let botaoGerarCartela = document.getElementById("botaoGerarCartela");
+    botaoGerarCartela.classList.add = "disabled"
     let vetorTds = document.getElementsByTagName("td");
     console.log(vetorTds);
     let numerosSorteados = [];
@@ -150,6 +159,7 @@ function jogarBingo() {
                         let h2Vencedor = document.getElementById("vencedor");
                         h2Vencedor.innerText += `${jogador.nome} ganhou o BINGO! Parabénnnsssssss!!!!!!\n`;
                         clearInterval(intervalo);
+                        jogoRolando = false;
                     }
                 });
             }
@@ -159,4 +169,25 @@ function jogarBingo() {
             clearInterval(intervalo);
         }
     }, 200);
+}
+
+function reiniciarJogo(){
+    let bingo = document.querySelector("#bingo");
+    let areaSorteio = document.querySelector("#sorteados");
+
+    let cartelas = document.querySelectorAll("#bingo > div");
+    let numerosSorteados = document.querySelectorAll("#sorteados > div")
+    if(cartelas.length > 0 && jogoRolando == false) {
+        cartelas.forEach(function(cartela){
+            bingo.removeChild(cartela);
+        });
+        numerosSorteados.forEach(function(numero){
+            areaSorteio.removeChild(numero);
+        })
+        let h2Vencedor = document.getElementById("vencedor");
+        h2Vencedor.innerText = "";
+        vetorJogadores = [];
+    }else{
+        alert("Você não pode reiniciar o jogo enquanto ele está rolando!")
+    }
 }
